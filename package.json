@@ -1,0 +1,10 @@
+{
+  "name": "na-han-munjang",
+  "version": "1.0.0",
+  "description": "나를 한 문장으로 — 고3 단체 활동, 학생 결과 자동 모으기",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" },
+  "license": "UNLICENSED",
+  "private": true
+}
