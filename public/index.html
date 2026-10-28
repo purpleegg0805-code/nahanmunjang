@@ -465,7 +465,7 @@ function payload(){
   let hit=0;S.pick.forEach(id=>{if(PRED_IDS.includes(id))hit++});
   const answered=Object.values(S.ans).filter(Boolean).length>=ITEMS.length;
   return {name:S.name,screen:S.screen,first:S.first,
-    r1:S.r1.length?avg(S.r1):null,r2:S.r2.length?avg(S.r2):null,t1:S.t1,t2:S.t2,slow:S.r2.length?slow():null,
+    r1:S.r1.length?avg(S.r1):null,r2:S.r2.length?avg(S.r2):null,t1:S.t1,t2:S.t2,w1:S.r1.length?S.r1.filter(x=>!x.ok).length:null,w2:S.r2.length?S.r2.filter(x=>!x.ok).length:null,slow:S.r2.length?slow():null,
     scores:AREAS.map(a=>areaStat(a.k).s),top:answered?topTwo().map(a=>a.k):[],
     f1hit:S.f1done?hit:null,f1wrong:S.f1done?S.pick.length-hit:null,f1done:S.f1done,f2:S.f2,f3:S.f3,f4:S.f4,f4done:S.f4done,
     self:selfText(),selfDone:['compare','card'].includes(S.screen),cmp:S.cmp};
@@ -988,10 +988,10 @@ function stageBody(i){
       <tr><td>1라운드<small>글자 = 색</small></td><td class="num">${t1!=null?sec1(t1):'–'}</td><td class="num">${sec(a1)}</td></tr>
       <tr class="hi"><td>2라운드<small>글자 ≠ 색</small></td><td class="num">${t2!=null?sec1(t2):'–'}</td><td class="num">${sec(a2)}</td></tr></tbody></table></div>`}
     const done=ROSTER.filter(s=>s.r2!=null);
-    h+=`<div class="row"><button class="btn small ghost" id="indivToggle">${T.indiv?'학생별 기록 숨기기':'학생별 기록 보기'}</button><span class="note">큰 화면에 학생 이름과 기록이 함께 나와요.</span></div>`;
-    if(T.indiv){h+=done.length?`<div style="overflow-x:auto"><table class="itable"><thead><tr><th>이름</th><th>1라운드<br>걸린 시간</th><th>2라운드<br>걸린 시간</th><th>1라운드<br>문제당</th><th>2라운드<br>문제당</th><th>느려진<br>비율</th></tr></thead><tbody>
-      ${done.map(s=>`<tr><td>${esc(s.name||'이름 없음')}</td><td class="num">${s.t1!=null?sec1(s.t1):'–'}</td><td class="num">${s.t2!=null?sec1(s.t2):'–'}</td><td class="num">${s.r1!=null?sec(s.r1):'–'}</td><td class="num">${sec(s.r2)}</td><td class="num">${s.slow>0?'+':''}${Math.round(s.slow)}%</td></tr>`).join('')}</tbody></table></div>`
-      :`<p class="note" style="margin:0">아직 2라운드를 마친 학생이 없어요.</p>`}
+    const rows=[...done].sort((a,b)=>(a.t2??1e12)-(b.t2??1e12));
+    h+=done.length?`<div class="label">학생별 기록 · 이름 없이 2라운드 걸린 시간 순</div><div style="overflow-x:auto"><table class="itable"><thead><tr><th>번호</th><th>1라운드<br>걸린 시간</th><th>1라운드<br>오답</th><th>2라운드<br>걸린 시간</th><th>2라운드<br>오답</th></tr></thead><tbody>
+      ${rows.map((s,k)=>`<tr><td>${k+1}</td><td class="num">${s.t1!=null?sec1(s.t1):'–'}</td><td class="num">${s.w1!=null?s.w1+'개':'–'}</td><td class="num">${s.t2!=null?sec1(s.t2):'–'}</td><td class="num">${s.w2!=null?s.w2+'개':'–'}</td></tr>`).join('')}</tbody></table></div>`
+      :`<p class="note" style="margin:0">아직 2라운드를 마친 학생이 없어요.</p>`;
   }
   if(i===2){h+=`<div class="stim" style="min-height:160px" aria-hidden="true"><span style="color:var(--s-blue)">빨강</span></div><p class="say muted" style="font-size:18px">이 글자의 정답은 「파랑」이에요.</p>`}
   if(i===4){
@@ -1076,9 +1076,9 @@ function downloadCSV(){
   const q=v=>{const s=v==null?'':String(v);return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s};
   const s1=ms=>ms==null?'':(ms/1000).toFixed(1), s2=ms=>ms==null?'':(ms/1000).toFixed(2);
   const area=k=>{const a=AREAS.find(x=>x.k===k);return a?a.name:''};
-  const head=['닉네임','처음 쓴 문장','1라운드 걸린 시간(초)','2라운드 걸린 시간(초)','1라운드 문제당(초)','2라운드 문제당(초)','느려진 비율(%)',
+  const head=['닉네임','처음 쓴 문장','1라운드 걸린 시간(초)','1라운드 오답(개)','2라운드 걸린 시간(초)','2라운드 오답(개)','1라운드 문제당(초)','2라운드 문제당(초)','느려진 비율(%)',
     '1위 강점','2위 강점',...AREAS.map(a=>a.name+'(25점)'),'1단계 맞힌 서술어(4개 중)','2단계 고른 중심 서술어','3단계 고른 주어','4단계 고른 꾸밈말','요약의 틀로 쓴 문장','비교 선택','진행한 단계'];
-  const rows=ROSTER.map(s=>[s.name,s.first,s1(s.t1),s1(s.t2),s2(s.r1),s2(s.r2),s.slow==null?'':Math.round(s.slow),
+  const rows=ROSTER.map(s=>[s.name,s.first,s1(s.t1),s.w1??'',s1(s.t2),s.w2??'',s2(s.r1),s2(s.r2),s.slow==null?'':Math.round(s.slow),
     area((s.top||[])[0]),area((s.top||[])[1]),...AREAS.map((a,i)=>(s.top||[]).length?((s.scores||[])[i]??''):''),
     s.f1hit??'',s.f2==null?'':F2.opts[s.f2],s.f3==null?'':F3.opts[s.f3],(s.f4||[]).map(i=>F4.opts[i]?F4.opts[i][0]:'').join(' / '),
     s.selfDone?s.self:'',s.cmp==null?'':CMP[s.cmp],s.screen==='card'?'결과 카드까지 마침':(STEP_NAME[PHASE_OF[s.screen]]||'')]);
