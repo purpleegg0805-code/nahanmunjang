@@ -323,6 +323,20 @@ button.tok:hover{background:var(--soft)}
 .t3o{font-size:26px;font-weight:700;color:var(--good)}
 .t3q{margin:0;font-weight:700;font-size:clamp(15px,1.6vw,19px);line-height:1.45}
 .t3ex{margin:0;font-size:clamp(14px,1.45vw,17px);color:var(--muted);line-height:1.5}
+.clock{font-size:20px;font-weight:600;color:var(--core);min-width:4.5ch;text-align:right}
+.stats3{grid-template-columns:repeat(3,minmax(0,1fr))}.stats3 .stat b{font-size:22px}
+.rtable{width:100%;border-collapse:collapse;font-size:15px}
+.rtable th{font-size:12px;color:var(--muted);font-weight:600;text-align:right;padding:6px 4px;border-bottom:1px solid var(--line);white-space:nowrap}
+.rtable td{padding:10px 4px;border-bottom:1px solid var(--line);text-align:right;font-size:17px;font-weight:600;white-space:nowrap}
+.rtable td:first-child{text-align:left;font-size:15px;font-weight:700}
+.rtable td small{display:block;font-size:12px;color:var(--muted);font-weight:500}
+.rtable tr.hi td{color:var(--core)}.rtable tr.hi td:first-child{color:var(--ink)}
+.rtable.big td{font-size:clamp(20px,2.4vw,30px)}.rtable.big td:first-child{font-size:clamp(16px,1.7vw,20px)}.rtable.big th{font-size:13px}.rtable.big th:first-child{text-align:left}
+.itable{width:100%;border-collapse:collapse;font-size:clamp(15px,1.6vw,19px)}
+.itable th{font-size:12px;color:var(--muted);font-weight:600;text-align:right;padding:6px 8px;border-bottom:1px solid var(--line);line-height:1.3}
+.itable th:first-child,.itable td:first-child{text-align:left}
+.itable td{padding:8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+.itable td:first-child{font-weight:700;white-space:normal}
 .confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:14px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -334,7 +348,7 @@ button.tok:hover{background:var(--soft)}
 const COLORS=[
   {k:'red',name:'빨강',v:'--s-red'},{k:'blue',name:'파랑',v:'--s-blue'},
   {k:'green',name:'초록',v:'--s-green'},{k:'yellow',name:'노랑',v:'--s-yellow'}];
-const TRIALS=8;
+const TRIALS=20;
 
 const AREAS=[
   {k:'A',name:'언어지능',adj:'생각을 말로 잘 꺼내는',how:'머릿속 생각을 다른 사람이 알아듣는 말과 글로 바꾸는 힘이에요.',
@@ -439,7 +453,7 @@ const CMP=['처음 문장','지금 문장','비슷해요'];
 const SITE_HOST='na.mypurpleegg.com';
 const QR_SVG='<svg viewBox="-4 -4 37 37" role="img" aria-label="na.mypurpleegg.com QR 코드" shape-rendering="crispEdges"><rect x="-4" y="-4" width="37" height="37" fill="#ffffff"/><path fill="#000000" d="M0 0h7v1h-7zM12 0h4v1h-4zM18 0h1v1h-1zM20 0h1v1h-1zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h2v1h-2zM11 1h1v1h-1zM15 1h1v1h-1zM17 1h1v1h-1zM20 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h1v1h-1zM10 2h2v1h-2zM14 2h1v1h-1zM16 2h1v1h-1zM18 2h3v1h-3zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h4v1h-4zM14 3h2v1h-2zM17 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM9 4h2v1h-2zM12 4h4v1h-4zM18 4h3v1h-3zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM13 5h2v1h-2zM16 5h3v1h-3zM20 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM8 7h1v1h-1zM11 7h3v1h-3zM19 7h2v1h-2zM0 8h1v1h-1zM6 8h1v1h-1zM8 8h1v1h-1zM10 8h3v1h-3zM14 8h2v1h-2zM17 8h1v1h-1zM21 8h2v1h-2zM25 8h3v1h-3zM1 9h2v1h-2zM4 9h1v1h-1zM9 9h1v1h-1zM11 9h2v1h-2zM14 9h1v1h-1zM17 9h3v1h-3zM21 9h1v1h-1zM23 9h2v1h-2zM26 9h2v1h-2zM0 10h1v1h-1zM3 10h2v1h-2zM6 10h4v1h-4zM12 10h1v1h-1zM17 10h1v1h-1zM20 10h5v1h-5zM7 11h2v1h-2zM11 11h1v1h-1zM14 11h3v1h-3zM20 11h2v1h-2zM23 11h1v1h-1zM25 11h1v1h-1zM2 12h3v1h-3zM6 12h1v1h-1zM8 12h1v1h-1zM10 12h5v1h-5zM19 12h2v1h-2zM22 12h2v1h-2zM28 12h1v1h-1zM1 13h2v1h-2zM4 13h1v1h-1zM7 13h4v1h-4zM13 13h2v1h-2zM17 13h8v1h-8zM27 13h2v1h-2zM0 14h4v1h-4zM5 14h3v1h-3zM13 14h4v1h-4zM20 14h2v1h-2zM25 14h2v1h-2zM2 15h2v1h-2zM7 15h3v1h-3zM13 15h2v1h-2zM16 15h1v1h-1zM22 15h2v1h-2zM26 15h1v1h-1zM28 15h1v1h-1zM3 16h1v1h-1zM6 16h1v1h-1zM8 16h3v1h-3zM12 16h1v1h-1zM14 16h2v1h-2zM17 16h2v1h-2zM25 16h2v1h-2zM0 17h1v1h-1zM3 17h1v1h-1zM8 17h2v1h-2zM16 17h7v1h-7zM24 17h1v1h-1zM26 17h3v1h-3zM0 18h3v1h-3zM6 18h1v1h-1zM9 18h1v1h-1zM12 18h3v1h-3zM16 18h1v1h-1zM19 18h2v1h-2zM22 18h1v1h-1zM24 18h2v1h-2zM28 18h1v1h-1zM0 19h1v1h-1zM2 19h1v1h-1zM5 19h1v1h-1zM8 19h1v1h-1zM12 19h1v1h-1zM14 19h3v1h-3zM20 19h2v1h-2zM24 19h1v1h-1zM0 20h1v1h-1zM2 20h2v1h-2zM5 20h5v1h-5zM12 20h1v1h-1zM16 20h1v1h-1zM18 20h7v1h-7zM26 20h3v1h-3zM8 21h1v1h-1zM10 21h4v1h-4zM16 21h3v1h-3zM20 21h1v1h-1zM24 21h2v1h-2zM0 22h7v1h-7zM10 22h1v1h-1zM12 22h6v1h-6zM19 22h2v1h-2zM22 22h1v1h-1zM24 22h3v1h-3zM0 23h1v1h-1zM6 23h1v1h-1zM10 23h1v1h-1zM13 23h1v1h-1zM17 23h4v1h-4zM24 23h1v1h-1zM27 23h2v1h-2zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM9 24h3v1h-3zM13 24h1v1h-1zM15 24h3v1h-3zM19 24h7v1h-7zM27 24h1v1h-1zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM9 25h3v1h-3zM13 25h1v1h-1zM16 25h1v1h-1zM18 25h1v1h-1zM21 25h1v1h-1zM25 25h3v1h-3zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM10 26h1v1h-1zM12 26h1v1h-1zM14 26h1v1h-1zM18 26h1v1h-1zM22 26h6v1h-6zM0 27h1v1h-1zM6 27h1v1h-1zM9 27h1v1h-1zM12 27h1v1h-1zM14 27h2v1h-2zM19 27h1v1h-1zM22 27h1v1h-1zM25 27h2v1h-2zM28 27h1v1h-1zM0 28h7v1h-7zM8 28h2v1h-2zM14 28h1v1h-1zM16 28h1v1h-1zM18 28h2v1h-2zM21 28h3v1h-3zM26 28h1v1h-1z"/></svg>';
 
-const freshS=()=>({mode:'',screen:'name',name:'',room:'',sid:newSid(),first:'',r1:[],r2:[],ans:{},si:0,pick:[],f1done:false,f2:null,f3:null,f4:[],f4done:false,
+const freshS=()=>({mode:'',screen:'name',name:'',room:'',sid:newSid(),first:'',r1:[],r2:[],t1:null,t2:null,ans:{},si:0,pick:[],f1done:false,f2:null,f3:null,f4:[],f4done:false,
   adj:'',mod:'',verb:'',cAdj:'',cMod:'',cVerb:'',text:'',edited:false,choose:'',sp:0,cmp:null});
 let S=load('nhs3_student',freshS());
 if(!S.sid)S.sid=newSid();
@@ -451,7 +465,7 @@ function payload(){
   let hit=0;S.pick.forEach(id=>{if(PRED_IDS.includes(id))hit++});
   const answered=Object.values(S.ans).filter(Boolean).length>=ITEMS.length;
   return {name:S.name,screen:S.screen,first:S.first,
-    r1:S.r1.length?avg(S.r1):null,r2:S.r2.length?avg(S.r2):null,slow:S.r2.length?slow():null,
+    r1:S.r1.length?avg(S.r1):null,r2:S.r2.length?avg(S.r2):null,t1:S.t1,t2:S.t2,slow:S.r2.length?slow():null,
     scores:AREAS.map(a=>areaStat(a.k).s),top:answered?topTwo().map(a=>a.k):[],
     f1hit:S.f1done?hit:null,f1wrong:S.f1done?S.pick.length-hit:null,f1done:S.f1done,f2:S.f2,f3:S.f3,f4:S.f4,f4done:S.f4done,
     self:selfText(),selfDone:['compare','card'].includes(S.screen),cmp:S.cmp};
@@ -532,13 +546,13 @@ const SCREENS={
    <button class="btn" id="nx" ${S.first.trim()?'':'disabled'}>저장하고 다음</button></div>`,
  stroopIntro:()=>`<div class="panel"><span class="label">2 · 색깔 실험</span><h2>글자의 색깔을 최대한 빨리 고르세요</h2>
    <p>화면에 색깔 이름이 나와요. 글자를 읽지 말고 <b>칠해진 색</b>을 누르세요.</p>
-   <p class="muted">속도를 1000분의 1초(ms) 단위로 재요. 1라운드 ${TRIALS}문제, 2라운드 ${TRIALS}문제예요.</p>
+   <p class="muted">속도를 초 단위로 재요(0.01초까지). 1라운드 ${TRIALS}문제, 2라운드 ${TRIALS}문제예요.</p>
    <div class="stim" aria-hidden="true"><span style="color:var(--s-green)">초록</span></div>
    <p class="note">이 예시는 글자도 초록, 색도 초록이라 정답이 「초록」이에요.</p>
    <button class="btn" id="nx">1라운드 시작</button></div>`,
  stroop1:()=>stroopScreen(1),
  stroopMid:()=>`<div class="panel"><span class="label">2 · 색깔 실험</span><h2>1라운드 끝</h2>
-   <div class="stats"><div class="stat"><span class="label">평균 반응 속도</span><b>${avg(S.r1)}ms</b></div><div class="stat"><span class="label">맞힌 수</span><b>${correct(S.r1)}/${TRIALS}</b></div></div>
+   <div class="stats stats3"><div class="stat"><span class="label">걸린 시간</span><b>${S.t1!=null?sec1(S.t1):'–'}</b></div><div class="stat"><span class="label">문제당 평균</span><b>${sec(avg(S.r1))}</b></div><div class="stat"><span class="label">맞힌 수</span><b>${correct(S.r1)}/${TRIALS}</b></div></div>
    <p>이번엔 조건을 하나만 바꿔요. <b>글자와 색이 서로 달라요.</b> 규칙은 같아요. 색깔만 고르세요.</p>
    <div class="stim" aria-hidden="true"><span style="color:var(--s-blue)">빨강</span></div>
    <p class="note">이 예시의 정답은 「파랑」이에요.</p>
@@ -547,7 +561,11 @@ const SCREENS={
  stroopResult:()=>{const p=slow();return `<div class="panel"><span class="label">2 · 색깔 실험 결과</span>
    <h2>2라운드에서 이만큼 느려졌어요</h2>
    <div class="big-pct num">${p>0?'+':''}${p}%</div>
-   <div class="stats"><div class="stat"><span class="label">1라운드 · 글자=색</span><b>${avg(S.r1)}ms</b></div><div class="stat"><span class="label">2라운드 · 글자≠색</span><b>${avg(S.r2)}ms</b></div></div>
+   <div style="overflow-x:auto"><table class="rtable"><thead><tr><th></th><th>걸린 시간</th><th>문제당 평균</th><th>맞힌 수</th></tr></thead><tbody>
+     <tr><td>1라운드<small>글자 = 색</small></td><td class="num">${S.t1!=null?sec1(S.t1):'–'}</td><td class="num">${sec(avg(S.r1))}</td><td class="num">${correct(S.r1)}/${TRIALS}</td></tr>
+     <tr class="hi"><td>2라운드<small>글자 ≠ 색</small></td><td class="num">${S.t2!=null?sec1(S.t2):'–'}</td><td class="num">${sec(avg(S.r2))}</td><td class="num">${correct(S.r2)}/${TRIALS}</td></tr>
+   </tbody></table></div>
+   <p class="note" style="margin:0">느려진 비율은 맞힌 문제의 문제당 평균 시간으로 계산해요.</p>
    <p>글자 읽기는 이미 수천 번 연습해서 <b>저절로</b> 돼요. 그래서 색만 보려 해도 글자를 먼저 읽어 버리고, 그걸 누르느라 시간이 더 걸려요.</p>
    <p>반대로 말하면, <b>많이 반복한 일은 저절로 된다</b>는 뜻이에요. 지금 어려운 일은 못하는 일이 아니라 아직 반복이 덜 된 일이에요. 오늘 마지막에 할 요약도 순서를 정해 두고 반복하면 저절로 돼요.</p>
    <div class="teacher-cue">${ONLINE?'내 결과는 선생님 화면에 자동으로 모여요.':'선생님이 느려진 비율을 물어보면 손을 들어 주세요.'}</div>
@@ -678,6 +696,8 @@ function mcScreen(step,Q,key){
 
 /* 계산 */
 function avg(r){const c=r.filter(x=>x.ok);const a=(c.length?c:r);if(!a.length)return 0;return Math.round(a.reduce((s,x)=>s+x.rt,0)/a.length)}
+function sec(ms){return (ms/1000).toFixed(2)+'초'}
+function sec1(ms){return (ms/1000).toFixed(1)+'초'}
 function correct(r){return r.filter(x=>x.ok).length}
 function slow(){const a=avg(S.r1),b=avg(S.r2);if(!a)return 0;return Math.round((b-a)/a*100)}
 function areaStat(k){let s=0,c5=0,c4=0;ITEMS.forEach((it,i)=>{if(it[0]!==k)return;const v=+(S.ans[i]||0);s+=v;if(v===5)c5++;if(v===4)c4++});return {s,c5,c4}}
@@ -689,7 +709,7 @@ let SR=null;
 function stopStroop(){if(SR&&SR.to)clearTimeout(SR.to);SR=null}
 function stroopScreen(round){
   return `<div class="panel"><span class="label">2 · 색깔 실험 · ${round}라운드 ${round===1?'· 글자=색':'· 글자≠색'}</span>
-  <div class="meter"><i id="sm" style="width:0%"></i></div>
+  <div class="row" style="justify-content:space-between"><div class="meter" style="flex:1"><i id="sm" style="width:0%"></i></div><span class="clock num" id="clk">0.0초</span></div>
   <div class="stim" id="stim"><span class="muted" style="font-family:var(--f-body);font-size:18px">준비…</span></div>
   <div class="answers">${COLORS.map(c=>`<button data-c="${c.k}"><span class="sw" style="background:var(${c.v})"></span>${c.name}</button>`).join('')}</div>
   <p class="note">칠해진 색을 누르세요.</p></div>`;
@@ -703,23 +723,31 @@ function startStroop(round){
     list.push({ink,word});
   }
   list.sort(()=>Math.random()-.5);
-  SR={round,list,i:0,res:[],t0:0,live:false,to:null};
+  SR={round,list,i:0,res:[],t0:0,live:false,to:null,start:null,end:null};
   SR.to=setTimeout(nextTrial,700);
 }
 function nextTrial(){
   if(!SR)return;const stim=$('#stim');if(!stim)return;
   if(SR.i>=SR.list.length){
-    if(SR.round===1){S.r1=SR.res;stopStroop();go('stroopMid')}else{S.r2=SR.res;stopStroop();go('stroopResult')}
+    const total=Math.round((SR.end||performance.now())-SR.start);
+    if(SR.round===1){S.r1=SR.res;S.t1=total;stopStroop();go('stroopMid')}else{S.r2=SR.res;S.t2=total;stopStroop();go('stroopResult')}
     return;
   }
   const t=SR.list[SR.i];
   stim.innerHTML=`<span style="color:var(${t.ink.v})">${t.word.name}</span>`;
   SR.t0=performance.now();SR.live=true;
+  if(SR.start==null){SR.start=SR.t0;requestAnimationFrame(tickClock)}
+}
+function tickClock(){
+  if(!SR||SR.start==null)return;
+  const el=$('#clk');if(el)el.textContent=(((SR.end||performance.now())-SR.start)/1000).toFixed(1)+'초';
+  if(!SR.end)requestAnimationFrame(tickClock);
 }
 function answerStroop(k){
   if(!SR||!SR.live)return;SR.live=false;
   const t=SR.list[SR.i],rt=Math.round(performance.now()-SR.t0);
   SR.res.push({rt,ok:k===t.ink.k});SR.i++;
+  if(SR.i>=SR.list.length)SR.end=performance.now();
   const m=$('#sm');if(m)m.style.width=(SR.i/SR.list.length*100)+'%';
   const stim=$('#stim');if(stim)stim.innerHTML='';
   SR.to=setTimeout(nextTrial,280);
@@ -899,7 +927,7 @@ function renderTeacher(){
     <section class="stage">${hasIns(T.phase)?`<div class="subtabs" role="tablist"><button role="tab" data-sub="0" aria-selected="${!T.sub}" class="${!T.sub?'on':''}">활동</button><button role="tab" data-sub="1" aria-selected="${!!T.sub}" class="${T.sub?'on':''}">결과 해설</button></div>`:''}${T.sub&&hasIns(T.phase)?insightBody(T.phase):stageBody(T.phase)}</section>
     <div class="tnav">
       <div class="row tnavbtns"><button class="btn ghost grow" id="prev" ${T.phase===0&&!T.sub?'disabled':''}>이전</button><button class="btn grow" id="next" ${T.phase===PHASES.length-1&&(T.sub||!hasIns(T.phase))?'disabled':''}>${hasIns(T.phase)&&!T.sub?'결과 해설로':'다음 단계'}</button></div>
-      <span id="tresetBox"><button class="linkbtn" id="resetT">${ONLINE?'이 반 기록 지우기':'집계 모두 지우기'}</button></span>
+      ${ONLINE?'<button class="linkbtn" id="csvDl">전체 기록 내려받기 (엑셀)</button>':''}<span id="tresetBox"><button class="linkbtn" id="resetT">${ONLINE?'이 반 기록 지우기':'집계 모두 지우기'}</button></span>
     </div>
   </div>`;
   bindTeacher();
@@ -953,8 +981,18 @@ function stageBody(i){
   if(i===0&&ONLINE){h+=`
     <div class="namechips">${ROSTER.map(s=>`<span class="chip-static k-subj">${esc(s.name||'이름 없음')}</span>`).join('')||'<span class="muted">아직 접속한 학생이 없어요.</span>'}</div>
     <span id="newRoomBox"><button class="btn small ghost" id="newRoom">다음 반 · 새 반 코드 만들기</button></span>`}
-  if(i===2&&ONLINE){const d=ROSTER.filter(s=>s.r2!=null);if(d.length){const a1=Math.round(d.reduce((x,s)=>x+s.r1,0)/d.length),a2=Math.round(d.reduce((x,s)=>x+s.r2,0)/d.length);
-    h+=`<div class="stats" style="max-width:520px"><div class="stat"><span class="label">우리 반 평균 · 1라운드</span><b>${a1}ms</b></div><div class="stat"><span class="label">우리 반 평균 · 2라운드</span><b>${a2}ms</b></div></div>`}}
+  if(i===2&&ONLINE){const d=ROSTER.filter(s=>s.r2!=null);if(d.length){
+    const mean=(k)=>{const v=d.map(s=>s[k]).filter(x=>x!=null);return v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):null};
+    const a1=mean('r1'),a2=mean('r2'),t1=mean('t1'),t2=mean('t2');
+    h+=`<div style="overflow-x:auto;max-width:640px"><table class="rtable big"><thead><tr><th>우리 반 평균 (${d.length}명)</th><th>걸린 시간</th><th>문제당 평균</th></tr></thead><tbody>
+      <tr><td>1라운드<small>글자 = 색</small></td><td class="num">${t1!=null?sec1(t1):'–'}</td><td class="num">${sec(a1)}</td></tr>
+      <tr class="hi"><td>2라운드<small>글자 ≠ 색</small></td><td class="num">${t2!=null?sec1(t2):'–'}</td><td class="num">${sec(a2)}</td></tr></tbody></table></div>`}
+    const done=ROSTER.filter(s=>s.r2!=null);
+    h+=`<div class="row"><button class="btn small ghost" id="indivToggle">${T.indiv?'학생별 기록 숨기기':'학생별 기록 보기'}</button><span class="note">큰 화면에 학생 이름과 기록이 함께 나와요.</span></div>`;
+    if(T.indiv){h+=done.length?`<div style="overflow-x:auto"><table class="itable"><thead><tr><th>이름</th><th>1라운드<br>걸린 시간</th><th>2라운드<br>걸린 시간</th><th>1라운드<br>문제당</th><th>2라운드<br>문제당</th><th>느려진<br>비율</th></tr></thead><tbody>
+      ${done.map(s=>`<tr><td>${esc(s.name||'이름 없음')}</td><td class="num">${s.t1!=null?sec1(s.t1):'–'}</td><td class="num">${s.t2!=null?sec1(s.t2):'–'}</td><td class="num">${s.r1!=null?sec(s.r1):'–'}</td><td class="num">${sec(s.r2)}</td><td class="num">${s.slow>0?'+':''}${Math.round(s.slow)}%</td></tr>`).join('')}</tbody></table></div>`
+      :`<p class="note" style="margin:0">아직 2라운드를 마친 학생이 없어요.</p>`}
+  }
   if(i===2){h+=`<div class="stim" style="min-height:160px" aria-hidden="true"><span style="color:var(--s-blue)">빨강</span></div><p class="say muted" style="font-size:18px">이 글자의 정답은 「파랑」이에요.</p>`}
   if(i===4){
     const r=T.reveal,show=!!T.show,cells=T.cells||[];
@@ -1018,6 +1056,8 @@ function bindTeacher(){
   };
   document.querySelectorAll('[data-spot]').forEach(b=>b.onclick=()=>{T.spot=T.spot===b.dataset.spot?'':b.dataset.spot;saveT();render();window.scrollTo({top:0,behavior:'smooth'})});
   const sc=$('#spotClose');if(sc)sc.onclick=()=>{T.spot='';saveT();render()};
+  const it=$('#indivToggle');if(it)it.onclick=()=>{T.indiv=!T.indiv;saveT();render()};
+  const dl=$('#csvDl');if(dl)dl.onclick=downloadCSV;
   const nr=$('#newRoom');if(nr)nr.onclick=()=>{
     $('#newRoomBox').innerHTML=`<span class="confirm">새 반 코드를 만들고 집계를 0부터 시작해요. 지금 반 결과는 서버에서 지워져요. <button class="btn small" id="nry">새 반 시작</button><button class="btn small ghost" id="nrn">취소</button></span>`;
     $('#nry').onclick=async()=>{const old=T.room;try{await fetch('/api/room/'+old,{method:'DELETE'})}catch(e){}ROSTER=[];T=freshT();T.room=newCode();saveT();render();poll()};
@@ -1029,6 +1069,25 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight')goNext();
   if(e.key==='ArrowLeft')goPrev();
 });
+
+/* ===================== 전체 기록 내려받기 (CSV, 엑셀에서 열림) ===================== */
+const STEP_NAME={1:'처음 한 문장',2:'색깔 실험',3:'강점 찾기',4:'요약의 틀',5:'나를 요약하기',6:'비교'};
+function downloadCSV(){
+  const q=v=>{const s=v==null?'':String(v);return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s};
+  const s1=ms=>ms==null?'':(ms/1000).toFixed(1), s2=ms=>ms==null?'':(ms/1000).toFixed(2);
+  const area=k=>{const a=AREAS.find(x=>x.k===k);return a?a.name:''};
+  const head=['닉네임','처음 쓴 문장','1라운드 걸린 시간(초)','2라운드 걸린 시간(초)','1라운드 문제당(초)','2라운드 문제당(초)','느려진 비율(%)',
+    '1위 강점','2위 강점',...AREAS.map(a=>a.name+'(25점)'),'1단계 맞힌 서술어(4개 중)','2단계 고른 중심 서술어','3단계 고른 주어','4단계 고른 꾸밈말','요약의 틀로 쓴 문장','비교 선택','진행한 단계'];
+  const rows=ROSTER.map(s=>[s.name,s.first,s1(s.t1),s1(s.t2),s2(s.r1),s2(s.r2),s.slow==null?'':Math.round(s.slow),
+    area((s.top||[])[0]),area((s.top||[])[1]),...AREAS.map((a,i)=>(s.top||[]).length?((s.scores||[])[i]??''):''),
+    s.f1hit??'',s.f2==null?'':F2.opts[s.f2],s.f3==null?'':F3.opts[s.f3],(s.f4||[]).map(i=>F4.opts[i]?F4.opts[i][0]:'').join(' / '),
+    s.selfDone?s.self:'',s.cmp==null?'':CMP[s.cmp],s.screen==='card'?'결과 카드까지 마침':(STEP_NAME[PHASE_OF[s.screen]]||'')]);
+  const csv='\uFEFF'+[head,...rows].map(r=>r.map(q).join(',')).join('\r\n');
+  const d=new Date(),pad=n=>String(n).padStart(2,'0');
+  const name=`나한문장_${T.room}_${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}.csv`;
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download=name;
+  document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);
+}
 
 /* ===================== 진행자 자동 집계 ===================== */
 let lastRoster='';

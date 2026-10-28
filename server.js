@@ -40,7 +40,7 @@ function clean(d) {
   if (!d || typeof d !== 'object') return null;
   return {
     name: str(d.name, 20), screen: str(d.screen, 20), first: str(d.first, 200),
-    r1: num(d.r1), r2: num(d.r2), slow: num(d.slow),
+    r1: num(d.r1), r2: num(d.r2), slow: num(d.slow), t1: num(d.t1), t2: num(d.t2),
     scores: Array.isArray(d.scores) ? d.scores.slice(0, 8).map(num) : [],
     top: Array.isArray(d.top) ? d.top.slice(0, 2).filter(k => /^[A-H]$/.test(k)) : [],
     f1hit: num(d.f1hit), f1wrong: num(d.f1wrong), f1done: bool(d.f1done),
