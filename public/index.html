@@ -113,7 +113,7 @@ textarea:focus,input[type=text]:focus{border-color:var(--subj);outline:none}
 .sticks button.on{background:var(--core);border-color:var(--core);color:#fff}
 .slab{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
 .bars{display:flex;flex-direction:column;gap:8px}
-.bar{display:grid;grid-template-columns:92px 1fr 32px;gap:10px;align-items:center;font-size:14px}
+.bar{display:grid;grid-template-columns:112px 1fr 32px;gap:10px;align-items:center;font-size:14px}
 .bar .track{height:12px;background:var(--soft);border-radius:6px;overflow:hidden}
 .bar .track i{display:block;height:100%;background:var(--muted)}
 .bar.top .track i{background:var(--core)}
@@ -187,8 +187,9 @@ button.tok:hover{background:var(--soft)}
 .tbar button b{display:block;font-size:15px}
 .tbar button.on{border-color:var(--core);background:var(--core-tint)}
 .tbar button.done{opacity:.6}
-.tgrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px;align-items:start}
-@media (max-width:860px){.tgrid{grid-template-columns:1fr}}
+.tgrid{display:flex;flex-direction:column;gap:14px}
+.tnav{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}
+.tnavbtns{flex:0 1 520px}
 .stage{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(20px,3vw,40px);display:flex;flex-direction:column;gap:20px;min-width:0}
 .stage .kicker{font-size:14px;font-weight:700;color:var(--core);letter-spacing:.06em}
 .stage h2{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,4.6vw,60px);line-height:1.2}
@@ -255,7 +256,7 @@ button.tok:hover{background:var(--soft)}
 .cchart{margin:0;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;background:var(--paper)}
 .cchart figcaption{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;font-weight:700;font-size:clamp(15px,1.5vw,18px)}
 .cchart figcaption .label{width:100%}
-.cbar{display:grid;grid-template-columns:minmax(64px,96px) 1fr 2.4ch;gap:8px;align-items:center;font-size:clamp(14px,1.4vw,17px)}
+.cbar{display:grid;grid-template-columns:minmax(84px,128px) 1fr 2.4ch;gap:8px;align-items:center;font-size:clamp(14px,1.4vw,17px)}
 .ctrack{height:clamp(14px,1.6vw,20px);background:var(--soft);border-radius:6px;overflow:hidden}
 .ctrack i{display:block;height:100%;background:var(--muted);border-radius:6px}
 .cbar.top span:first-child{font-weight:700}.cbar.top .ctrack i{background:var(--core)}
@@ -293,6 +294,35 @@ button.tok:hover{background:var(--soft)}
 .tnum{font-size:22px;text-align:right}
 .fstats{display:flex;flex-direction:column;gap:8px}
 .privacy{margin:0;font-size:13px;line-height:1.55;color:var(--muted);background:var(--soft);border-radius:10px;padding:10px 12px}
+.joinbox{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,3vw,36px);align-items:center}
+@media (max-width:640px){.joinbox{grid-template-columns:1fr}}
+.qrbox{margin:0;display:flex;flex-direction:column;align-items:center;gap:8px}
+.qrbox svg{width:clamp(180px,20vw,260px);height:auto;display:block;border-radius:12px;box-shadow:0 0 0 1px var(--line)}
+.qrbox figcaption{font-size:14px;color:var(--muted);font-weight:600}
+.joininfo{display:flex;flex-direction:column;gap:18px;min-width:0}
+.sitehost{white-space:nowrap;overflow-x:auto;font-size:clamp(18px,2.2vw,30px)}
+.lq{display:flex;flex-direction:column;gap:4px}
+.lq h3{font-size:clamp(22px,2.6vw,32px);line-height:1.4}
+.lnote{font-size:clamp(17px,1.8vw,21px)!important;color:var(--muted);margin:0}
+.tests.big3{font-size:clamp(17px,1.9vw,23px)}.tests.big3 div{font-size:inherit}
+.lgrid{font-size:clamp(17px,1.9vw,22px)}
+.cellbtn{width:100%;min-height:48px;border-radius:10px;border:1.5px dashed var(--line);background:var(--paper);font-size:clamp(20px,2.2vw,28px);font-weight:700;color:var(--muted)}
+.cellbtn.y{border-style:solid;border-color:var(--good);color:var(--good);background:color-mix(in srgb,var(--good) 10%,var(--card))}
+.cellbtn.n{border-style:solid;color:var(--muted);background:var(--soft)}
+.lopts{display:flex;flex-wrap:wrap;gap:10px}
+.lopt{border:1.5px solid var(--line);border-radius:12px;padding:10px 16px;font-size:clamp(18px,2vw,24px);font-weight:700;background:var(--paper)}
+.lopt small{font-size:.65em;color:var(--muted);font-weight:500}
+.lopt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 12%,var(--card))}
+.t3head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px}
+.t3ans{font-weight:700;font-size:clamp(15px,1.6vw,19px)}
+.t3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.t3{grid-template-columns:1fr}}
+.t3card{border:1.5px solid var(--core);border-radius:14px;padding:14px;background:var(--core-tint);display:flex;flex-direction:column;gap:6px}
+.t3top{display:flex;justify-content:space-between;align-items:center}
+.t3top b{font-family:var(--f-display);font-weight:400;font-size:clamp(22px,2.4vw,30px);color:var(--core)}
+.t3o{font-size:26px;font-weight:700;color:var(--good)}
+.t3q{margin:0;font-weight:700;font-size:clamp(15px,1.6vw,19px);line-height:1.45}
+.t3ex{margin:0;font-size:clamp(14px,1.45vw,17px);color:var(--muted);line-height:1.5}
 .confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:14px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -307,21 +337,21 @@ const COLORS=[
 const TRIALS=8;
 
 const AREAS=[
-  {k:'A',name:'말·글',adj:'생각을 말로 잘 꺼내는',how:'머릿속 생각을 다른 사람이 알아듣는 말과 글로 바꾸는 힘이에요.',
+  {k:'A',name:'언어지능',adj:'생각을 말로 잘 꺼내는',how:'머릿속 생각을 다른 사람이 알아듣는 말과 글로 바꾸는 힘이에요.',
    can:['복잡한 내용을 쉽게 설명한다','생각을 글로 정리한다','상대를 설득한다'],uses:['발표','기획서·보고서 쓰기','고객 응대·상담','영상 대본·홍보 문구']},
-  {k:'B',name:'논리·숫자',adj:'이유를 끝까지 따지는',how:'왜 그런지 따지고, 일을 순서대로 세우는 힘이에요.',
+  {k:'B',name:'논리수학지능',adj:'이유를 끝까지 따지는',how:'왜 그런지 따지고, 일을 순서대로 세우는 힘이에요.',
    can:['문제의 원인을 찾아낸다','일을 순서대로 나눈다','숫자로 따져 판단한다'],uses:['프로그램 오류 찾기','데이터 정리','일정·예산 관리','품질 점검']},
-  {k:'C',name:'그림·공간',adj:'눈으로 먼저 생각하는',how:'보이는 모습을 머릿속에서 그리고, 보기 좋게 배치하는 힘이에요.',
+  {k:'C',name:'공간지각지능',adj:'눈으로 먼저 생각하는',how:'보이는 모습을 머릿속에서 그리고, 보기 좋게 배치하는 힘이에요.',
    can:['정보를 한눈에 보이게 정리한다','화면을 보기 좋게 배치한다','생각을 그림으로 보여 준다'],uses:['웹·앱 화면 디자인','영상 편집','썸네일·포스터 만들기','3D 모델링']},
-  {k:'D',name:'몸·손',adj:'손이 먼저 움직이는',how:'직접 해 보면서 빠르게 익히고, 도구와 장비를 다루는 힘이에요.',
+  {k:'D',name:'신체활동지능',adj:'손이 먼저 움직이는',how:'직접 해 보면서 빠르게 익히고, 도구와 장비를 다루는 힘이에요.',
    can:['직접 만들며 빨리 익힌다','장비를 능숙하게 다룬다','현장에서 바로 대처한다'],uses:['촬영·조명 장비 다루기','기기 조립·수리','제작 실습','행사 현장 운영']},
-  {k:'E',name:'소리·리듬',adj:'소리에 예민한',how:'작은 소리 차이와 흐름을 알아채는 힘이에요.',
+  {k:'E',name:'음악지능',adj:'소리에 예민한',how:'작은 소리 차이와 흐름을 알아채는 힘이에요.',
    can:['작은 소리 차이를 잡아낸다','분위기에 맞는 소리를 고른다','흐름과 박자를 맞춘다'],uses:['녹음·음향 편집','영상 배경음 고르기','영상 컷 길이 맞추기','공연·방송 진행']},
-  {k:'F',name:'사람·관계',adj:'사람을 잘 챙기는',how:'사람의 마음을 알아채고, 여러 사람이 함께 움직이게 하는 힘이에요.',
+  {k:'F',name:'대인관계지능',adj:'사람을 잘 챙기는',how:'사람의 마음을 알아채고, 여러 사람이 함께 움직이게 하는 힘이에요.',
    can:['사람 사이를 조율한다','팀의 역할을 나눈다','상대가 원하는 것을 알아챈다'],uses:['팀 프로젝트 이끌기','고객 상담·영업','행사 기획','신입 안내']},
-  {k:'G',name:'나 이해',adj:'나를 잘 아는',how:'내가 무엇을 잘하고 못하는지 알고, 스스로 움직이는 힘이에요.',
+  {k:'G',name:'자기이해지능',adj:'나를 잘 아는',how:'내가 무엇을 잘하고 못하는지 알고, 스스로 움직이는 힘이에요.',
    can:['스스로 목표를 세워 해낸다','혼자서도 꾸준히 배운다','내 실수를 찾아 고친다'],uses:['자격증·시험 준비','혼자 하는 창작 작업','일정 관리','새 프로그램 혼자 익히기']},
-  {k:'H',name:'자연·관찰',adj:'작은 차이를 알아채는',how:'남들이 지나치는 차이를 보고, 오래 지켜보며 기록하는 힘이에요.',
+  {k:'H',name:'자연친화지능',adj:'작은 차이를 알아채는',how:'남들이 지나치는 차이를 보고, 오래 지켜보며 기록하는 힘이에요.',
    can:['작은 오류를 찾아낸다','오래 지켜보며 기록한다','맡은 것을 끝까지 돌본다'],uses:['프로그램 테스트','데이터 검수','실험·관찰 기록','동식물·환경 관련 일']}];
 const BANK={
  A:['친구에게 어려운 내용을 설명해 주면 "이제 알겠다"는 말을 자주 듣는다.',
@@ -406,6 +436,8 @@ const CODE_ABC='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 function newCode(){const a=new Uint8Array(4);crypto.getRandomValues(a);return [...a].map(x=>CODE_ABC[x%32]).join('')}
 function newSid(){const a=new Uint8Array(10);crypto.getRandomValues(a);return [...a].map(x=>(x%36).toString(36)).join('')+Date.now().toString(36).slice(-6)}
 const CMP=['처음 문장','지금 문장','비슷해요'];
+const SITE_HOST='na.mypurpleegg.com';
+const QR_SVG='<svg viewBox="-4 -4 37 37" role="img" aria-label="na.mypurpleegg.com QR 코드" shape-rendering="crispEdges"><rect x="-4" y="-4" width="37" height="37" fill="#ffffff"/><path fill="#000000" d="M0 0h7v1h-7zM12 0h4v1h-4zM18 0h1v1h-1zM20 0h1v1h-1zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h2v1h-2zM11 1h1v1h-1zM15 1h1v1h-1zM17 1h1v1h-1zM20 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h1v1h-1zM10 2h2v1h-2zM14 2h1v1h-1zM16 2h1v1h-1zM18 2h3v1h-3zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h4v1h-4zM14 3h2v1h-2zM17 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM9 4h2v1h-2zM12 4h4v1h-4zM18 4h3v1h-3zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM13 5h2v1h-2zM16 5h3v1h-3zM20 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM8 7h1v1h-1zM11 7h3v1h-3zM19 7h2v1h-2zM0 8h1v1h-1zM6 8h1v1h-1zM8 8h1v1h-1zM10 8h3v1h-3zM14 8h2v1h-2zM17 8h1v1h-1zM21 8h2v1h-2zM25 8h3v1h-3zM1 9h2v1h-2zM4 9h1v1h-1zM9 9h1v1h-1zM11 9h2v1h-2zM14 9h1v1h-1zM17 9h3v1h-3zM21 9h1v1h-1zM23 9h2v1h-2zM26 9h2v1h-2zM0 10h1v1h-1zM3 10h2v1h-2zM6 10h4v1h-4zM12 10h1v1h-1zM17 10h1v1h-1zM20 10h5v1h-5zM7 11h2v1h-2zM11 11h1v1h-1zM14 11h3v1h-3zM20 11h2v1h-2zM23 11h1v1h-1zM25 11h1v1h-1zM2 12h3v1h-3zM6 12h1v1h-1zM8 12h1v1h-1zM10 12h5v1h-5zM19 12h2v1h-2zM22 12h2v1h-2zM28 12h1v1h-1zM1 13h2v1h-2zM4 13h1v1h-1zM7 13h4v1h-4zM13 13h2v1h-2zM17 13h8v1h-8zM27 13h2v1h-2zM0 14h4v1h-4zM5 14h3v1h-3zM13 14h4v1h-4zM20 14h2v1h-2zM25 14h2v1h-2zM2 15h2v1h-2zM7 15h3v1h-3zM13 15h2v1h-2zM16 15h1v1h-1zM22 15h2v1h-2zM26 15h1v1h-1zM28 15h1v1h-1zM3 16h1v1h-1zM6 16h1v1h-1zM8 16h3v1h-3zM12 16h1v1h-1zM14 16h2v1h-2zM17 16h2v1h-2zM25 16h2v1h-2zM0 17h1v1h-1zM3 17h1v1h-1zM8 17h2v1h-2zM16 17h7v1h-7zM24 17h1v1h-1zM26 17h3v1h-3zM0 18h3v1h-3zM6 18h1v1h-1zM9 18h1v1h-1zM12 18h3v1h-3zM16 18h1v1h-1zM19 18h2v1h-2zM22 18h1v1h-1zM24 18h2v1h-2zM28 18h1v1h-1zM0 19h1v1h-1zM2 19h1v1h-1zM5 19h1v1h-1zM8 19h1v1h-1zM12 19h1v1h-1zM14 19h3v1h-3zM20 19h2v1h-2zM24 19h1v1h-1zM0 20h1v1h-1zM2 20h2v1h-2zM5 20h5v1h-5zM12 20h1v1h-1zM16 20h1v1h-1zM18 20h7v1h-7zM26 20h3v1h-3zM8 21h1v1h-1zM10 21h4v1h-4zM16 21h3v1h-3zM20 21h1v1h-1zM24 21h2v1h-2zM0 22h7v1h-7zM10 22h1v1h-1zM12 22h6v1h-6zM19 22h2v1h-2zM22 22h1v1h-1zM24 22h3v1h-3zM0 23h1v1h-1zM6 23h1v1h-1zM10 23h1v1h-1zM13 23h1v1h-1zM17 23h4v1h-4zM24 23h1v1h-1zM27 23h2v1h-2zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM9 24h3v1h-3zM13 24h1v1h-1zM15 24h3v1h-3zM19 24h7v1h-7zM27 24h1v1h-1zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM9 25h3v1h-3zM13 25h1v1h-1zM16 25h1v1h-1zM18 25h1v1h-1zM21 25h1v1h-1zM25 25h3v1h-3zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM10 26h1v1h-1zM12 26h1v1h-1zM14 26h1v1h-1zM18 26h1v1h-1zM22 26h6v1h-6zM0 27h1v1h-1zM6 27h1v1h-1zM9 27h1v1h-1zM12 27h1v1h-1zM14 27h2v1h-2zM19 27h1v1h-1zM22 27h1v1h-1zM25 27h2v1h-2zM28 27h1v1h-1zM0 28h7v1h-7zM8 28h2v1h-2zM14 28h1v1h-1zM16 28h1v1h-1zM18 28h2v1h-2zM21 28h3v1h-3zM26 28h1v1h-1z"/></svg>';
 
 const freshS=()=>({mode:'',screen:'name',name:'',room:'',sid:newSid(),first:'',r1:[],r2:[],ans:{},si:0,pick:[],f1done:false,f2:null,f3:null,f4:[],f4done:false,
   adj:'',mod:'',verb:'',cAdj:'',cMod:'',cVerb:'',text:'',edited:false,choose:'',sp:0,cmp:null});
@@ -823,6 +855,11 @@ const INSIGHTS={
   use:[['brief','진로·직무','결과 화면의<br>「이런 일에서 쓰여요」부터'],['team','조별 과제','강점이 다른 사람끼리<br>역할 나누기'],['mic','면접·자기소개서','「잘합니다」 ✕<br>강점이 드러난 경험 1개 ○']]},
  4:{title:'요약은 서술어에서 시작',
   visual:()=>`${flow([['서술어','문장 끝','s-p'],['중심 서술어','삭제·지지·포괄','s-c'],['주어','무엇이?','s-s'],['꾸밈말','문단 맥락','s-m'],['한 문장','','hot']])}
+     <div class="t3head"><span class="label">중심 서술어를 고르는 세 질문</span><span class="t3ans">세 질문 모두 ○ → <span class="mark m-core">늘었다</span></span></div>
+     <div class="t3">${[['삭제','이 서술어가 있는 문장을 지우면 문단이 무너지나요?','4문장을 지우면 글이 무엇을 말하려는지 사라져요'],
+                        ['지지','다른 문장들이 이 문장을 받쳐 주나요?','처음 맡음 · 느렸음 · 빨라짐이 「실력이 늘었다」를 받쳐 줘요'],
+                        ['포괄','이 문장이 나머지 문장을 다 품나요?','「그사이」로 1학년부터 3학년까지를 모두 품어요']]
+       .map(t=>`<div class="t3card"><div class="t3top"><b>${t[0]}</b><span class="t3o">○</span></div><p class="t3q">${t[1]}</p><p class="t3ex">${t[2]}</p></div>`).join('')}</div>
      ${vs(`<span class="label">마지막 문장만 옮김</span><p>그사이 지수의 편집 실력이 늘었다.</p><small>언제? 무엇을 하며? → 빠짐</small>`,
           `<span class="label">가리키는 말 풀기 + 꾸밈말 가져오기</span><p><span class="mark m-mod">1학년부터 3학년까지</span> <span class="mark m-mod">축제 영상을 만들면서</span> <span class="mark m-mod">지수의</span> <span class="mark m-subj">편집 실력이</span> <span class="mark m-core">늘었다</span>.</p><small>문단 전체가 담김</small>`)}`,
   use:[['text','교과서·기사','문장 끝 서술어부터<br>표시'],['test','긴 시험 지문','문단마다<br>중심 서술어 1개 적기'],['mail','보고·메일','주어 + 꾸밈말 + 중심 서술어<br>한 문장 먼저']]},
@@ -857,17 +894,13 @@ function renderTeacher(){
   app.innerHTML=`
   <div class="top"><span class="brand">나를 <i>한 문장</i>으로 · 진행자</span>
     <div class="row">${ONLINE?`<span class="toproom">반 코드 <b class="num">${esc(T.room)}</b> · 접속 ${ROSTER.length}명</span>`:''}<button class="linkbtn" id="toHome">처음 화면</button></div></div>
-  <nav class="tbar" aria-label="단계">${PHASES.map((p,i)=>`<button data-ph="${i}" class="${i===T.phase?'on':''} ${i<T.phase?'done':''}"><span class="num">${p.kicker}</span><b>${p.title}</b></button>`).join('')}</nav>
+  <nav class="tbar" aria-label="단계">${PHASES.map((p,i)=>`<button data-ph="${i}" class="${i===T.phase?'on':''} ${i<T.phase?'done':''}"><span class="num">${i}</span><b>${p.title}</b></button>`).join('')}</nav>
   <div class="tgrid">
     <section class="stage">${hasIns(T.phase)?`<div class="subtabs" role="tablist"><button role="tab" data-sub="0" aria-selected="${!T.sub}" class="${!T.sub?'on':''}">활동</button><button role="tab" data-sub="1" aria-selected="${!!T.sub}" class="${T.sub?'on':''}">결과 해설</button></div>`:''}${T.sub&&hasIns(T.phase)?insightBody(T.phase):stageBody(T.phase)}</section>
-    <aside class="side">
-      <div class="timer"><span class="label" style="color:inherit;opacity:.7">${P.title} · ${P.min}분</span>
-        <div class="t" id="tt">${fmt(T.left)}</div>
-        <div class="row"><button class="btn small grow" id="tgo">${T.run?'멈춤':'시작'}</button><button class="btn small ghost" id="treset">다시</button></div></div>
-      <div class="script"><span class="label">진행 메모</span><ol>${P.script.map(s=>`<li>${s}</li>`).join('')}</ol></div>
-      <div class="row"><button class="btn ghost grow" id="prev" ${T.phase===0&&!T.sub?'disabled':''}>이전</button><button class="btn grow" id="next" ${T.phase===PHASES.length-1&&(T.sub||!hasIns(T.phase))?'disabled':''}>${hasIns(T.phase)&&!T.sub?'결과 해설로':'다음 단계'}</button></div>
+    <div class="tnav">
+      <div class="row tnavbtns"><button class="btn ghost grow" id="prev" ${T.phase===0&&!T.sub?'disabled':''}>이전</button><button class="btn grow" id="next" ${T.phase===PHASES.length-1&&(T.sub||!hasIns(T.phase))?'disabled':''}>${hasIns(T.phase)&&!T.sub?'결과 해설로':'다음 단계'}</button></div>
       <span id="tresetBox"><button class="linkbtn" id="resetT">${ONLINE?'이 반 기록 지우기':'집계 모두 지우기'}</button></span>
-    </aside>
+    </div>
   </div>`;
   bindTeacher();
 }
@@ -913,25 +946,45 @@ function frameStats(){
 }
 function stageBody(i){
   const P=PHASES[i];
-  let h=`<span class="kicker">${P.kicker} · ${P.title}</span>${progressHTML(i)}${(i===5||i===6)?spotHTML():''}<h2>${P.head}</h2>${P.say?`<p class="say">${P.say}</p>`:''}`;
-  if(i===0&&ONLINE){h+=`<div class="roombox"><div><span class="label">주소</span><div class="linkshow">${esc(location.host)}</div></div><div><span class="label">반 코드</span><div class="roomcode num">${esc(T.room)}</div></div></div>
+  let h=`<span class="kicker">${P.title}</span>${progressHTML(i)}${(i===5||i===6)?spotHTML():''}<h2>${P.head}</h2>${P.say?`<p class="say">${P.say}</p>`:''}`;
+  if(i===0){h+=`<div class="joinbox"><figure class="qrbox">${QR_SVG}<figcaption>휴대폰 카메라로 찍으세요</figcaption></figure>
+    <div class="joininfo"><div><span class="label">주소</span><div class="linkshow sitehost">${SITE_HOST}</div></div>
+    ${ONLINE?`<div><span class="label">반 코드</span><div class="roomcode num">${esc(T.room)}</div></div>`:''}</div></div>`}
+  if(i===0&&ONLINE){h+=`
     <div class="namechips">${ROSTER.map(s=>`<span class="chip-static k-subj">${esc(s.name||'이름 없음')}</span>`).join('')||'<span class="muted">아직 접속한 학생이 없어요.</span>'}</div>
     <span id="newRoomBox"><button class="btn small ghost" id="newRoom">다음 반 · 새 반 코드 만들기</button></span>`}
-  if(i===0&&!ONLINE){h+=`<input type="text" id="lk" placeholder="이 페이지 링크를 붙여 넣으세요" value="${esc(T.link)}">${T.link.trim()?`<div class="linkshow">${esc(T.link)}</div>`:''}`}
   if(i===2&&ONLINE){const d=ROSTER.filter(s=>s.r2!=null);if(d.length){const a1=Math.round(d.reduce((x,s)=>x+s.r1,0)/d.length),a2=Math.round(d.reduce((x,s)=>x+s.r2,0)/d.length);
     h+=`<div class="stats" style="max-width:520px"><div class="stat"><span class="label">우리 반 평균 · 1라운드</span><b>${a1}ms</b></div><div class="stat"><span class="label">우리 반 평균 · 2라운드</span><b>${a2}ms</b></div></div>`}}
   if(i===2){h+=`<div class="stim" style="min-height:160px" aria-hidden="true"><span style="color:var(--s-blue)">빨강</span></div><p class="say muted" style="font-size:18px">이 글자의 정답은 「파랑」이에요.</p>`}
   if(i===4){
-    const r=T.reveal;
-    const tok=TOK.map(ws=>ws.map(t=>{let c='';if(r>=1&&PRED_IDS.includes(t.id))c='ok';if(r>=3&&SUBJ_IDS.includes(t.id))c+=' subj';return `<span class="tok ${c}">${t.w}</span>`}).join(' ')).join(' ');
+    const r=T.reveal,show=!!T.show,cells=T.cells||[];
+    const tokCls=t=>{let c='';
+      if((r===1&&show)||r>=2){if(PRED_IDS.includes(t.id))c='ok'}
+      if(((r===3&&show)||r>=4)&&SUBJ_IDS.includes(t.id))c+=' subj';return c};
+    const tok=TOK.map(ws=>ws.map(t=>`<span class="tok ${tokCls(t)}">${t.w}</span>`).join(' ')).join(' ');
+    const Q=['먼저 글을 읽고, 이 글을 한 문장으로 요약해 보세요.','문장 끝 서술어를 모두 찾아보세요.','세 가지 질문으로 중심 서술어를 고르세요.','무엇이 늘었나요? 주어를 고르세요.','요약에 꼭 들어가야 하는 꾸밈말을 모두 고르세요.','고른 말을 이어 붙여 한 문장으로 완성해요.'][r];
     h+=`<div class="reveal-steps">${['지문','1 서술어','2 중심 서술어','3 주어','4 꾸밈말','5 완성'].map((s,k)=>`<button data-rv="${k}" class="${r===k?'on':''}">${s}</button>`).join('')}</div>
-    <div class="tbig">${tok}</div>
-    ${r===2?`<div class="tests" style="font-size:clamp(16px,1.8vw,22px)">${TESTS.map(t=>`<div style="font-size:inherit"><b>${t[0]}</b>${t[1]}</div>`).join('')}</div>
-      <div style="overflow-x:auto"><table class="tgrid3" style="font-size:clamp(16px,1.8vw,22px)"><thead><tr><th>서술어</th>${TESTS.map(t=>`<th>${t[0]}</th>`).join('')}</tr></thead>
-      <tbody>${F2.opts.map((o,k)=>`<tr class="${k===F2.ans?'win':''}"><td>${o}</td>${F2.grid[k].map(g=>`<td class="${g?'y':'n'}">${g?'○':'✕'}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:''}
-    <div class="cards">${r>=2?'<span class="cardlet m-core">늘었다</span>':''}${r>=3?'<span class="cardlet m-subj">편집 실력이</span>':''}${r>=4?'<span class="cardlet m-mod">1학년부터 3학년까지</span><span class="cardlet m-mod">축제 영상을 만들면서</span><span class="cardlet m-mod">지수의</span>':''}</div>
-    ${r>=2&&r<5?`<p class="say muted" style="font-size:18px">${r===2?'세 질문을 모두 통과하는 것은 「늘었다」. 1~3문장은 실력이 늘었다는 것을 받쳐 주는 장면이에요.':r===3?'무엇이 늘었나? 편집 실력이. 「지수의」는 누구의 실력인지 알려 주는 꾸밈말이에요.':'「그사이」가 가리키는 1학년부터 3학년까지와, 축제 영상을 만들면서를 1·3문장에서 가져와요. 4문장만 옮기면 요약이 되지 않아요. 「몰라보게」는 빼도 뜻이 그대로예요.'}</p>`:''}
-    ${r>=5?'<p class="summary-line" style="font-size:clamp(24px,3vw,38px)"><span class="mark m-mod">1학년부터 3학년까지</span> <span class="mark m-mod">축제 영상을 만들면서</span> <span class="mark m-mod">지수의</span> <span class="mark m-subj">편집 실력이</span> <span class="mark m-core">늘었다</span>.</p>':''}`;
+    <div class="lq"><span class="label">${r?r+'단계 · ':''}학생 화면과 같은 질문</span><h3>${Q}</h3></div>
+    <div class="tbig">${tok}</div>`;
+    if(r===1&&show)h+=`<p class="say lnote">문장이 4개이므로 서술어도 4개예요. 「넣는」은 문장 중간에서 뒤로 이어지는 말이라 빼요.</p>`;
+    if(r===2){
+      const all=F2.opts.length*3,open=cells.length,winOpen=[0,1,2].every(c=>cells.includes(F2.ans+'-'+c));
+      h+=`<div class="tests big3">${TESTS.map(t=>`<div><b>${t[0]}</b>${t[1]}</div>`).join('')}</div>
+      <p class="note" style="margin:0">칸을 하나씩 누르면서 학생들에게 물어보세요. 누르면 ○ / ✕가 나와요.</p>
+      <div style="overflow-x:auto"><table class="tgrid3 lgrid"><thead><tr><th>서술어</th>${TESTS.map(t=>`<th>${t[0]}</th>`).join('')}</tr></thead>
+      <tbody>${F2.opts.map((o,k)=>`<tr class="${winOpen&&k===F2.ans?'win':''}"><td>${o}</td>${F2.grid[k].map((g,c)=>{const id=k+'-'+c,on=cells.includes(id);
+        return `<td><button class="cellbtn ${on?(g?'y':'n'):''}" data-cell="${id}" aria-label="${o} ${TESTS[c][0]}">${on?(g?'○':'✕'):'?'}</button></td>`}).join('')}</tr>`).join('')}</tbody></table></div>
+      <div class="row"><button class="btn small ghost" id="cellsAll">${open<all?'표 모두 보기':'표 가리기'}</button></div>
+      ${winOpen?`<div class="cards"><span class="cardlet m-core">늘었다</span></div><p class="say lnote">세 질문을 모두 통과하는 서술어는 「늘었다」뿐이에요. 4문장을 지우면 글이 무엇을 말하려는지 사라지고(삭제), 1~3문장이 실력이 늘었다는 것을 받쳐 주고(지지), 「그사이」로 1~3문장의 일을 모두 품어요(포괄). 「완성했다」는 3학년 때 일 하나만 말해서 나머지를 품지 못해요.</p>`:''}`;
+    }
+    if(r===3){h+=`<div class="lopts">${F3.opts.map((o,k)=>`<span class="lopt ${show&&k===F3.ans?'right':''}">${o}</span>`).join('')}</div>
+      ${show?`<div class="cards"><span class="cardlet m-core">늘었다</span><span class="cardlet m-subj">편집 실력이</span></div><p class="say lnote">중심 서술어 「늘었다」에서 거꾸로 올라가 「무엇이?」를 물으면 「편집 실력이」예요. 「지수의」는 누구의 실력인지 알려 주는 꾸밈말이라 4단계에서 골라요.</p>`:''}`}
+    if(r===4){h+=`<p class="say lnote" style="margin:0">언제·어디서·어떻게·무엇을·왜 등에 답하는 말 가운데, 문단 전체의 맥락을 정확히 담는 꾸밈말을 골라요.</p>
+      <div class="lopts">${F4.opts.map((o,k)=>`<span class="lopt ${show&&F4.ans.includes(k)?'right':''}">${o[0]} <small>${o[1]}</small></span>`).join('')}</div>
+      ${show?`<div class="cards"><span class="cardlet m-mod">1학년부터 3학년까지</span><span class="cardlet m-mod">축제 영상을 만들면서</span><span class="cardlet m-mod">지수의</span></div><p class="say lnote">「그사이」가 가리키는 1학년부터 3학년까지와 「축제 영상을 만들면서」를 1·3문장에서 가져와요. 4문장만 옮기면 요약이 되지 않아요. 「자막 하나를 넣는 데」「하루 만에」는 한 장면만 말하고, 「몰라보게」는 빼도 뜻이 그대로예요.</p>`:''}`}
+    if(r===5){h+=show?`<p class="summary-line" style="font-size:clamp(24px,3vw,38px)"><span class="mark m-mod">1학년부터 3학년까지</span> <span class="mark m-mod">축제 영상을 만들면서</span> <span class="mark m-mod">지수의</span> <span class="mark m-subj">편집 실력이</span> <span class="mark m-core">늘었다</span>.</p><p class="say lnote">고른 말을 이어 붙이면 요약문이 돼요. 순서는 언제나 서술어 → 중심 서술어 → 주어 → 꾸밈말이에요.</p>`
+      :`<p class="tbig" style="margin:0"><span class="mark m-mod">꾸밈말</span> + <span class="mark m-subj">주어</span> + <span class="mark m-core">중심 서술어</span></p>`}
+    if(r!==2&&r!==0)h+=`<div class="row"><button class="btn" id="showAns">${show?'정답 가리기':'정답 보기'}</button></div>`;
   }
   if(i===5){h+=`<p class="tbig" style="margin:0"><span class="mark m-mod">어떤</span> <span class="mark m-subj">나는</span> <span class="mark m-mod">어떻게</span> <span class="mark m-core">무엇을 한다</span></p>
     <p class="say muted">예) <span class="mark m-mod">눈으로 먼저 생각하는</span> <span class="mark m-subj">나는</span> <span class="mark m-mod">사람들이 쉽게 쓰도록</span> <span class="mark m-core">화면을 보기 좋게 배치한다</span>.</p>
@@ -945,18 +998,19 @@ function stageBody(i){
 function tick(){
   if(!T.run)return;T.left--;saveT();const el=$('#tt');if(el){el.textContent=fmt(T.left);el.classList.toggle('over',T.left<0)}
 }
-function setPhase(i){T.phase=i;T.sub=0;T.spot='';T.left=phaseSecs(i);T.run=false;T.reveal=0;saveT();render();window.scrollTo(0,0)}
+function setPhase(i){T.phase=i;T.sub=0;T.spot='';T.show=false;T.left=phaseSecs(i);T.run=false;T.reveal=0;saveT();render();window.scrollTo(0,0)}
 function bindTeacher(){
   $('#toHome').onclick=()=>{T.run=false;saveT();S.mode='';saveS();render()};
   document.querySelectorAll('[data-ph]').forEach(b=>b.onclick=()=>setPhase(+b.dataset.ph));
   $('#prev').onclick=goPrev;
   $('#next').onclick=goNext;
   document.querySelectorAll('[data-sub]').forEach(b=>b.onclick=()=>{T.sub=+b.dataset.sub;saveT();render()});
-  $('#tgo').onclick=()=>{T.run=!T.run;saveT();$('#tgo').textContent=T.run?'멈춤':'시작'};
-  $('#treset').onclick=()=>{T.left=phaseSecs(T.phase);T.run=false;saveT();render()};
   const el=$('#tt');if(el)el.classList.toggle('over',T.left<0);
   document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{const a=T[b.dataset.t],i=+b.dataset.i;a[i]=Math.max(0,a[i]+(+b.dataset.d));saveT();render()});
-  document.querySelectorAll('[data-rv]').forEach(b=>b.onclick=()=>{T.reveal=+b.dataset.rv;saveT();render()});
+  document.querySelectorAll('[data-rv]').forEach(b=>b.onclick=()=>{T.reveal=+b.dataset.rv;T.show=false;saveT();render()});
+  const sa=$('#showAns');if(sa)sa.onclick=()=>{T.show=!T.show;saveT();render()};
+  document.querySelectorAll('[data-cell]').forEach(b=>b.onclick=()=>{const c=T.cells||[],id=b.dataset.cell;T.cells=c.includes(id)?c.filter(x=>x!==id):[...c,id];saveT();render()});
+  const ca=$('#cellsAll');if(ca)ca.onclick=()=>{const all=[];F2.opts.forEach((o,k)=>[0,1,2].forEach(c=>all.push(k+'-'+c)));T.cells=(T.cells||[]).length<all.length?all:[];saveT();render()};
   const lk=$('#lk');if(lk)lk.onchange=()=>{T.link=lk.value;saveT();render()};
   $('#resetT').onclick=()=>{
     $('#tresetBox').innerHTML=`<span class="confirm">${ONLINE?'이 반 학생 결과가 서버에서 지워져요.':'집계와 링크가 지워져요.'} <button class="btn small" id="ry">지우기</button><button class="btn small ghost" id="rn">취소</button></span>`;
