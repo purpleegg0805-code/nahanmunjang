@@ -947,18 +947,18 @@ function progressHTML(i){
   if(!ONLINE)return '';
   const done=ROSTER.filter(DONE[i]),left=ROSTER.filter(s=>!DONE[i](s));
   return `<div class="prog"><span class="pill">${i===0?'접속':'이 단계 완료'} <b class="num">${done.length}</b> / ${ROSTER.length}명</span>
-  ${i>0&&left.length&&left.length<=15?`<span class="muted">아직: ${left.map(s=>esc(s.name||'이름 없음')).join(', ')}</span>`:''}</div>`;
+  ${i>0&&left.length?`<span class="muted">아직 ${left.length}명</span>`:''}</div>`;
 }
 function spotHTML(){
   const s=ROSTER.find(x=>x.sid===T.spot);if(!s)return '';
-  return `<div class="spot"><div class="row" style="justify-content:space-between"><span class="label">${esc(s.name||'이름 없음')}</span><button class="btn small ghost" id="spotClose">닫기</button></div>
+  return `<div class="spot"><div class="row" style="justify-content:space-between"><span class="label">학생 문장</span><button class="btn small ghost" id="spotClose">닫기</button></div>
   ${T.phase===6&&s.first?`<div class="spotpair"><div><span class="label">처음 쓴 문장</span><p class="spotfirst">${esc(s.first)}</p></div><div><span class="label">요약의 틀로 쓴 문장</span><p class="spotself">${esc(s.self)}</p></div></div>`
     :`<p class="spotself">${esc(s.self)}</p>`}</div>`;
 }
 function wallHTML(){
-  const list=ROSTER.filter(s=>s.selfDone&&(s.self||'').trim());
+  const list=ROSTER.filter(s=>s.selfDone&&(s.self||'').trim()).sort((a,b)=>a.sid<b.sid?-1:1);
   if(!list.length)return `<p class="muted say" style="font-size:18px">학생이 「처음 문장과 비교하기」를 누르면 문장이 여기에 모여요.</p>`;
-  return `<div class="label">학생 문장 ${list.length}개 · 누르면 크게 보여요</div><div class="wall">${list.map(s=>`<button class="wcard ${T.spot===s.sid?'on':''}" data-spot="${esc(s.sid)}"><span class="label">${esc(s.name||'이름 없음')}</span><span>${esc(s.self)}</span></button>`).join('')}</div>`;
+  return `<div class="label">학생 문장 ${list.length}개 · 누르면 크게 보여요</div><div class="wall">${list.map(s=>`<button class="wcard ${T.spot===s.sid?'on':''}" data-spot="${esc(s.sid)}"><span>${esc(s.self)}</span></button>`).join('')}</div>`;
 }
 function frameStats(){
   const n=ROSTER.length;if(!n)return '';
@@ -979,7 +979,7 @@ function stageBody(i){
     <div class="joininfo"><div><span class="label">주소</span><div class="linkshow sitehost">${SITE_HOST}</div></div>
     ${ONLINE?`<div><span class="label">반 코드</span><div class="roomcode num">${esc(T.room)}</div></div>`:''}</div></div>`}
   if(i===0&&ONLINE){h+=`
-    <div class="namechips">${ROSTER.map(s=>`<span class="chip-static k-subj">${esc(s.name||'이름 없음')}</span>`).join('')||'<span class="muted">아직 접속한 학생이 없어요.</span>'}</div>
+    ${ROSTER.length?'':'<p class="muted" style="margin:0">아직 접속한 학생이 없어요.</p>'}
     <span id="newRoomBox"><button class="btn small ghost" id="newRoom">다음 반 · 새 반 코드 만들기</button></span>`}
   if(i===2&&ONLINE){const d=ROSTER.filter(s=>s.r2!=null);if(d.length){
     const mean=(k)=>{const v=d.map(s=>s[k]).filter(x=>x!=null);return v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):null};
